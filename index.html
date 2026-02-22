@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INUPLA - 犬好きの、犬好きによる、犬好きのためのアプリ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #11C820;
+      --green-dark: #0EA81A;
+      --green-light: rgba(17, 200, 32, 0.08);
+      --text: #4B4B4B;
+      --text-light: #7A7A7A;
+      --bg: #F7F7F7;
+      --white: #FFFFFF;
+      --line: #E5E5E5;
+      --accent: #B7B7B7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ========== HEADER ========== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: var(--green);
+      padding: 0 32px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    .header-logo {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 24px;
+      color: var(--white);
+      letter-spacing: -0.5px;
+      text-decoration: none;
+    }
+
+    .header-logo span {
+      opacity: 0.85;
+      font-weight: 600;
+    }
+
+    .btn-header {
+      background: var(--white);
+      color: var(--green);
+      border: none;
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    .btn-header:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(255,255,255,0.3);
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      background: var(--bg);
+      padding-top: 64px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero .container {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+
+    .hero-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .hero-catch {
+      font-size: 36px;
+      font-weight: 900;
+      line-height: 1.4;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .hero-catch .highlight {
+      color: var(--green);
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--text-light);
+      margin-bottom: 36px;
+      font-weight: 400;
+    }
+
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green);
+      color: var(--white);
+      border: none;
+      padding: 16px 40px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: 'Noto Sans JP', sans-serif;
+      box-shadow: 0 4px 20px rgba(17, 200, 32, 0.3);
+    }
+
+    .btn-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(17, 200, 32, 0.4);
+      background: var(--green-dark);
+    }
+
+    .btn-cta svg {
+      transition: transform 0.2s ease;
+    }
+
+    .btn-cta:hover svg {
+      transform: translateX(3px);
+    }
+
+    .hero-visual {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .phone-mockup {
+      width: 280px;
+      height: 560px;
+      background: var(--white);
+      border-radius: 40px;
+      border: 8px solid #1a1a1a;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    }
+
+    .phone-notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 28px;
+      background: #1a1a1a;
+      border-radius: 0 0 18px 18px;
+      z-index: 2;
+    }
+
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, #f0fdf0 0%, var(--white) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      gap: 12px;
+    }
+
+    .phone-screen-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--green);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .phone-screen-text {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--text);
+    }
+
+    .phone-screen-sub {
+      font-size: 12px;
+      color: var(--text-light);
+      text-align: center;
+    }
+
+    .phone-screen-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    .phone-screen-item {
+      background: var(--bg);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      color: var(--text);
+    }
+
+    .dog-character {
+      position: absolute;
+      bottom: -10px;
+      right: -40px;
+      width: 100px;
+      height: 100px;
+      background: #FFE4B5;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      border: 4px solid var(--white);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* ========== FEATURES ========== */
+    .features {
+      padding: 100px 0;
+      background: var(--white);
+    }
+
+    .features-title {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .features-subtitle {
+      text-align: center;
+      font-size: 15px;
+      color: var(--text-light);
+      margin-bottom: 72px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 80px;
+      margin-bottom: 100px;
+    }
+
+    .feature-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .feature-item.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .feature-text {
+      flex: 1;
+    }
+
+    .feature-label {
+      display: inline-block;
+      background: var(--green-light);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+    }
+
+    .feature-heading {
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.4;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .feature-desc {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text-light);
+    }
+
+    .feature-visual {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .feature-phone {
+      width: 240px;
+      height: 480px;
+      background: var(--white);
+      border-radius: 32px;
+      border: 6px solid #1a1a1a;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.10);
+    }
+
+    .feature-phone .phone-notch {
+      width: 100px;
+      height: 24px;
+    }
+
+    .feature-phone-screen {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+      gap: 8px;
+    }
+
+    .feature-phone-screen .screen-icon {
+      font-size: 48px;
+      margin-bottom: 8px;
+    }
+
+    .feature-phone-screen .screen-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .feature-phone-screen .screen-desc {
+      font-size: 11px;
+      color: var(--text-light);
+      text-align: center;
+    }
+
+    .screen-diary { background: linear-gradient(180deg, #FFF8E1 0%, var(--white) 100%); }
+    .screen-community { background: linear-gradient(180deg, #E8F5E9 0%, var(--white) 100%); }
+    .screen-game { background: linear-gradient(180deg, #E3F2FD 0%, var(--white) 100%); }
+    .screen-ai { background: linear-gradient(180deg, #F3E5F5 0%, var(--white) 100%); }
+    .screen-map { background: linear-gradient(180deg, #E0F7FA 0%, var(--white) 100%); }
+    .screen-shop { background: linear-gradient(180deg, #FFF3E0 0%, var(--white) 100%); }
+
+    /* placeholder UI elements inside phone screens */
+    .screen-placeholder-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      width: 100%;
+      padding: 0 8px;
+      margin-top: 12px;
+    }
+
+    .screen-placeholder-card {
+      background: var(--bg);
+      border-radius: 8px;
+      height: 32px;
+      width: 100%;
+    }
+
+    .screen-placeholder-card.short { width: 70%; }
+
+    /* ========== POINT SECTION ========== */
+    .point-section {
+      padding: 100px 0;
+      background: var(--bg);
+    }
+
+    .point-title {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .point-subtitle {
+      text-align: center;
+      font-size: 15px;
+      color: var(--text-light);
+      margin-bottom: 60px;
+      line-height: 1.8;
+    }
+
+    .point-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .point-step {
+      flex: 1;
+      min-width: 200px;
+      max-width: 280px;
+      text-align: center;
+      padding: 32px 24px;
+      background: var(--white);
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      transition: transform 0.2s ease;
+    }
+
+    .point-step:hover {
+      transform: translateY(-4px);
+    }
+
+    .point-step-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--green-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin: 0 auto 16px;
+    }
+
+    .point-step-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .point-step-desc {
+      font-size: 13px;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    .point-arrow {
+      font-size: 24px;
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    /* ========== FAQ ========== */
+    .faq {
+      padding: 100px 0;
+      background: var(--white);
+    }
+
+    .faq-title {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 48px;
+      color: var(--text);
+    }
+
+    .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .faq-item:first-child {
+      border-top: 1px solid var(--line);
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 24px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      cursor: pointer;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      text-align: left;
+    }
+
+    .faq-question:hover {
+      color: var(--green);
+    }
+
+    .faq-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+      font-size: 18px;
+      color: var(--text-light);
+    }
+
+    .faq-item.active .faq-icon {
+      background: var(--green);
+      color: var(--white);
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+    }
+
+    .faq-answer-inner {
+      padding: 0 0 24px;
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text-light);
+    }
+
+    /* ========== CTA SECTION ========== */
+    .cta-section {
+      padding: 100px 0;
+      background: var(--green);
+      text-align: center;
+    }
+
+    .cta-heading {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 40px;
+      line-height: 1.4;
+    }
+
+    .cta-form {
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .cta-input {
+      width: 100%;
+      padding: 16px 24px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 12px;
+      font-size: 15px;
+      font-family: 'Noto Sans JP', sans-serif;
+      background: rgba(255,255,255,0.15);
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.2s ease;
+      margin-bottom: 16px;
+    }
+
+    .cta-input::placeholder {
+      color: rgba(255,255,255,0.6);
+    }
+
+    .cta-input:focus {
+      border-color: var(--white);
+      background: rgba(255,255,255,0.2);
+    }
+
+    .btn-cta-submit {
+      width: 100%;
+      background: var(--white);
+      color: var(--green);
+      border: none;
+      padding: 16px 40px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    .btn-cta-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+    }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      background: var(--white);
+      padding: 60px 0 32px;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 40px;
+      gap: 40px;
+    }
+
+    .footer-logo {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .footer-link {
+      font-size: 13px;
+      color: var(--text-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-link:hover {
+      color: var(--green);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 16px;
+      transition: all 0.2s ease;
+    }
+
+    .footer-social a:hover {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-company {
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    .footer-copyright {
+      font-size: 12px;
+      color: var(--accent);
+    }
+
+    /* ========== ANIMATIONS ========== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========== MOBILE RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      .header {
+        padding: 0 16px;
+        height: 56px;
+      }
+
+      .header-logo {
+        font-size: 20px;
+      }
+
+      .btn-header {
+        padding: 8px 18px;
+        font-size: 12px;
+      }
+
+      .hero {
+        padding-top: 56px;
+      }
+
+      .hero .container {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+        padding-top: 48px;
+        padding-bottom: 48px;
+      }
+
+      .hero-catch {
+        font-size: 26px;
+      }
+
+      .hero-sub {
+        font-size: 14px;
+        margin-bottom: 28px;
+      }
+
+      .hero-visual {
+        width: 100%;
+      }
+
+      .phone-mockup {
+        width: 220px;
+        height: 440px;
+        border-width: 6px;
+        border-radius: 32px;
+      }
+
+      .dog-character {
+        width: 72px;
+        height: 72px;
+        font-size: 36px;
+        right: -20px;
+        bottom: -5px;
+      }
+
+      /* Features mobile */
+      .features {
+        padding: 72px 0;
+      }
+
+      .features-title {
+        font-size: 22px;
+      }
+
+      .features-subtitle {
+        margin-bottom: 48px;
+      }
+
+      .feature-item,
+      .feature-item.reverse {
+        flex-direction: column;
+        gap: 40px;
+        margin-bottom: 72px;
+        text-align: center;
+      }
+
+      .feature-heading {
+        font-size: 22px;
+      }
+
+      .feature-phone {
+        width: 200px;
+        height: 400px;
+      }
+
+      /* Point section mobile */
+      .point-section {
+        padding: 72px 0;
+      }
+
+      .point-title {
+        font-size: 22px;
+      }
+
+      .point-flow {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .point-step {
+        min-width: unset;
+        max-width: 100%;
+        width: 100%;
+      }
+
+      .point-arrow {
+        transform: rotate(90deg);
+      }
+
+      /* FAQ mobile */
+      .faq {
+        padding: 72px 0;
+      }
+
+      .faq-title {
+        font-size: 22px;
+      }
+
+      .faq-question {
+        font-size: 14px;
+        padding: 20px 0;
+      }
+
+      /* CTA mobile */
+      .cta-section {
+        padding: 72px 0;
+      }
+
+      .cta-heading {
+        font-size: 24px;
+      }
+
+      /* Footer mobile */
+      .footer-top {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .footer-links {
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header">
+    <a href="#" class="header-logo">INUPLA</a>
+    <button class="btn-header" onclick="scrollToCTA()">事前登録する</button>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-text">
+        <h1 class="hero-catch">
+          <span class="highlight">犬好き</span>の、<br>
+          <span class="highlight">犬好き</span>による、<br>
+          <span class="highlight">犬好き</span>のためのアプリ
+        </h1>
+        <p class="hero-sub">
+          日記、ゲーム、AIチャット、コミュニティ、マップ。<br>
+          毎日開きたくなる、犬の飼い主のためのスーパーアプリ。
+        </p>
+        <button class="btn-cta" onclick="scrollToCTA()">
+          事前登録する
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+      <div class="hero-visual">
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="phone-screen-icon">🐕</div>
+            <div class="phone-screen-text">INUPLA</div>
+            <div class="phone-screen-sub">犬の飼い主のためのスーパーアプリ</div>
+            <div class="phone-screen-items">
+              <span class="phone-screen-item">📔 日記</span>
+              <span class="phone-screen-item">🎮 ゲーム</span>
+              <span class="phone-screen-item">🤖 AI</span>
+              <span class="phone-screen-item">👥 コミュニティ</span>
+              <span class="phone-screen-item">🗺️ マップ</span>
+            </div>
+          </div>
+        </div>
+        <div class="dog-character">🐶</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FEATURES ========== -->
+  <section class="features">
+    <div class="container">
+      <h2 class="features-title fade-in">できること</h2>
+      <p class="features-subtitle fade-in">INUPLAひとつで、愛犬との毎日がもっと楽しく。</p>
+
+      <!-- Feature 1: 日記 -->
+      <div class="feature-item fade-in">
+        <div class="feature-text">
+          <span class="feature-label">📔 DIARY</span>
+          <h3 class="feature-heading">今日のできごとを、<br>愛犬と一緒に</h3>
+          <p class="feature-desc">写真と一緒に愛犬との日々を記録。成長の思い出がどんどん積み重なります。</p>
+        </div>
+        <div class="feature-visual">
+          <div class="feature-phone">
+            <div class="phone-notch"></div>
+            <div class="feature-phone-screen screen-diary">
+              <span class="screen-icon">📔</span>
+              <span class="screen-label">今日の日記</span>
+              <span class="screen-desc">写真を追加して記録しよう</span>
+              <div class="screen-placeholder-cards">
+                <div class="screen-placeholder-card"></div>
+                <div class="screen-placeholder-card short"></div>
+                <div class="screen-placeholder-card"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 2: コミュニティ -->
+      <div class="feature-item reverse fade-in">
+        <div class="feature-text">
+          <span class="feature-label">👥 COMMUNITY</span>
+          <h3 class="feature-heading">犬好き同士、<br>もっとつながる</h3>
+          <p class="feature-desc">愛犬の写真を投稿したり、他の飼い主さんと情報交換。犬仲間が見つかります。</p>
+        </div>
+        <div class="feature-visual">
+          <div class="feature-phone">
+            <div class="phone-notch"></div>
+            <div class="feature-phone-screen screen-community">
+              <span class="screen-icon">👥</span>
+              <span class="screen-label">コミュニティ</span>
+              <span class="screen-desc">みんなの投稿をチェック</span>
+              <div class="screen-placeholder-cards">
+                <div class="screen-placeholder-card"></div>
+                <div class="screen-placeholder-card"></div>
+                <div class="screen-placeholder-card short"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 3: ゲーム -->
+      <div class="feature-item fade-in">
+        <div class="feature-text">
+          <span class="feature-label">🎮 GAME</span>
+          <h3 class="feature-heading">スキマ時間に、<br>犬ゲームで遊ぼう</h3>
+          <p class="feature-desc">Flappy DogやMergeパズルなど、犬テーマのミニゲームが盛りだくさん。</p>
+        </div>
+        <div class="feature-visual">
+          <div class="feature-phone">
+            <div class="phone-notch"></div>
+            <div class="feature-phone-screen screen-game">
+              <span class="screen-icon">🎮</span>
+              <span class="screen-label">ミニゲーム</span>
+              <span class="screen-desc">遊んでポイントを貯めよう</span>
+              <div class="screen-placeholder-cards">
+                <div class="screen-placeholder-card"></div>
+                <div class="screen-placeholder-card short"></div>
+                <div class="screen-placeholder-card"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 4: AIチャット -->
+      <div class="feature-item reverse fade-in">
+        <div class="feature-text">
+          <span class="feature-label">🤖 AI CHAT</span>
+          <h3 class="feature-heading">犬のことなら、<br>AIに何でも聞ける</h3>
+          <p class="feature-desc">しつけ、健康、ごはんのこと。愛犬の悩みをAIがいつでもサポートします。</p>
+        </div>
+        <div class="feature-visual">
+          <div class="feature-phone">
+            <div class="phone-notch"></div>
+            <div class="feature-phone-screen screen-ai">
+              <span class="screen-icon">🤖</span>
+              <span class="screen-label">AIチャット</span>
+              <span class="screen-desc">何でも聞いてみよう</span>
+              <div class="screen-placeholder-cards">
+                <div class="screen-placeholder-card short"></div>
+                <div class="screen-placeholder-card"></div>
+                <div class="screen-placeholder-card short"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 5: マップ -->
+      <div class="feature-item fade-in">
+        <div class="feature-text">
+          <span class="feature-label">🗺️ MAP</span>
+          <h3 class="feature-heading">犬と行ける場所、<br>すぐ見つかる</h3>
+          <p class="feature-desc">ドッグラン、犬OKカフェ、ペットショップ。近くの犬フレンドリーな施設を検索。</p>
+        </div>
+        <div class="feature-visual">
+          <div class="feature-phone">
+            <div class="phone-notch"></div>
+            <div class="feature-phone-screen screen-map">
+              <span class="screen-icon">🗺️</span>
+              <span class="screen-label">マップ検索</span>
+              <span class="screen-desc">近くの犬フレンドリー施設</span>
+              <div class="screen-placeholder-cards">
+                <div class="screen-placeholder-card"></div>
+                <div class="screen-placeholder-card"></div>
+                <div class="screen-placeholder-card short"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 6: ショッピング -->
+      <div class="feature-item reverse fade-in">
+        <div class="feature-text">
+          <span class="feature-label">🛍️ SHOP</span>
+          <h3 class="feature-heading">貯めたポイントで、<br>愛犬にごほうびを</h3>
+          <p class="feature-desc">ドッグフード、おやつ、犬用品。ポイントで愛犬へのプレゼントと交換できます。</p>
+        </div>
+        <div class="feature-visual">
+          <div class="feature-phone">
+            <div class="phone-notch"></div>
+            <div class="feature-phone-screen screen-shop">
+              <span class="screen-icon">🛍️</span>
+              <span class="screen-label">ショップ</span>
+              <span class="screen-desc">ポイントで交換しよう</span>
+              <div class="screen-placeholder-cards">
+                <div class="screen-placeholder-card"></div>
+                <div class="screen-placeholder-card short"></div>
+                <div class="screen-placeholder-card"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== POINT SECTION ========== -->
+  <section class="point-section">
+    <div class="container">
+      <h2 class="point-title fade-in">使うほど貯まる。貯めたポイントで愛犬にごほうび。</h2>
+      <p class="point-subtitle fade-in">日記、コミュニティ、ゲーム。<br>INUPLAを楽しむだけで、ポイントが自然に貯まります。</p>
+
+      <div class="point-flow fade-in">
+        <div class="point-step">
+          <div class="point-step-icon">📔</div>
+          <div class="point-step-title">使って貯める</div>
+          <div class="point-step-desc">日記を書く、投稿する、ゲームで遊ぶ。毎日の活動でポイント獲得。</div>
+        </div>
+
+        <div class="point-arrow">→</div>
+
+        <div class="point-step">
+          <div class="point-step-icon">⭐</div>
+          <div class="point-step-title">ポイントが貯まる</div>
+          <div class="point-step-desc">デイリーミッションやストリークボーナスでさらにポイントアップ。</div>
+        </div>
+
+        <div class="point-arrow">→</div>
+
+        <div class="point-step">
+          <div class="point-step-icon">🎁</div>
+          <div class="point-step-title">愛犬にごほうび</div>
+          <div class="point-step-desc">ドッグフード、おやつ、犬用品とポイントを交換できます。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section class="faq">
+    <div class="container">
+      <h2 class="faq-title fade-in">よくある質問</h2>
+      <div class="faq-list fade-in">
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>利用料金はかかりますか？</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">基本機能は無料です。一部のプレミアム機能は月額課金で解放できます。</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>どんな犬種でも使えますか？</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">はい、犬種に関係なくすべての犬の飼い主さんにお使いいただけます。</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>ポイントはどうやって貯まりますか？</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">日記の投稿、コミュニティでの交流、ゲームのプレイなど、アプリを使うだけで自然に貯まります。</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>ポイントは何に使えますか？</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">ドッグフード、おやつ、犬用品などと交換できます。</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>複数の犬を登録できますか？</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">はい、何頭でも登録可能です。</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>事前登録すると何か特典がありますか？</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">リリース時に限定特典をプレゼント予定です。</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>対応端末は？</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">iPhone / Android 両対応予定です。</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA SECTION ========== -->
+  <section class="cta-section" id="cta">
+    <div class="container">
+      <h2 class="cta-heading fade-in">愛犬との毎日が変わる。<br>今すぐ事前登録。</h2>
+      <div class="cta-form fade-in">
+        <input type="email" class="cta-input" placeholder="メールアドレスを入力">
+        <button class="btn-cta-submit">事前登録する</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <a href="#" class="footer-logo">INUPLA</a>
+        <div class="footer-links">
+          <a href="#" class="footer-link">プライバシーポリシー</a>
+          <a href="#" class="footer-link">利用規約</a>
+          <a href="#" class="footer-link">お問い合わせ</a>
+          <a href="#" class="footer-link">会社情報</a>
+        </div>
+        <div class="footer-social">
+          <a href="#" aria-label="X (Twitter)">𝕏</a>
+          <a href="#" aria-label="Instagram">📷</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-company">ラフレクト株式会社</span>
+        <span class="footer-copyright">© 2025 Raflect Inc.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll to CTA
+    function scrollToCTA() {
+      document.getElementById('cta').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // FAQ accordion
+    function toggleFAQ(button) {
+      const item = button.parentElement;
+      const isActive = item.classList.contains('active');
+      
+      // Close all
+      document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
+      
+      // Toggle clicked
+      if (!isActive) {
+        item.classList.add('active');
+      }
+    }
+
+    // Scroll animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
