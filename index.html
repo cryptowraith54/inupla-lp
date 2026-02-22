@@ -3,15 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>INUPLA - 犬好きの、犬好きによる、犬好きのためのアプリ</title>
+  <title>INUPLA - 愛犬との暮らし、ぜんぶINUPLAで。</title>
+  <meta name="description" content="記録、つながり、あそび、AI相談、マップ、ショッピングまで。犬の飼い主のためのオールインワンアプリ。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
       --green: #11C820;
       --green-dark: #0EA81A;
-      --green-light: rgba(17, 200, 32, 0.08);
+      --green-light: rgba(17,200,32,0.08);
       --text: #4B4B4B;
       --text-light: #7A7A7A;
       --bg: #F7F7F7;
@@ -19,1251 +21,406 @@
       --line: #E5E5E5;
       --accent: #B7B7B7;
     }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Noto Sans JP', sans-serif;
-      color: var(--text);
-      background: var(--white);
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
+      color: var(--text); background: var(--white);
+      line-height: 1.8; -webkit-font-smoothing: antialiased; overflow-x: hidden;
     }
 
-    .container {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* ========== HEADER ========== */
+    /* HEADER */
     .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      background: var(--green);
-      padding: 0 32px;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--green); height: 60px;
+      display: flex; align-items: center; justify-content: space-between; padding: 0 48px;
     }
-
-    .header-logo {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 800;
-      font-size: 24px;
-      color: var(--white);
-      letter-spacing: -0.5px;
-      text-decoration: none;
+    .header-logo a { display: flex; align-items: center; }
+    .header-logo img { height: 22px; }
+    .header-cta {
+      padding: 8px 24px; background: var(--white); color: var(--green);
+      font-weight: 700; font-size: 13px; border-radius: 50px; text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
+    .header-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
 
-    .header-logo span {
-      opacity: 0.85;
-      font-weight: 600;
+    /* HERO */
+    .hero { padding-top: 60px; background: var(--white); }
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto; padding: 80px 60px 100px;
+      display: flex; align-items: center; gap: 60px;
     }
-
-    .btn-header {
-      background: var(--white);
-      color: var(--green);
-      border: none;
-      padding: 10px 24px;
-      border-radius: 50px;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      font-family: 'Noto Sans JP', sans-serif;
-    }
-
-    .btn-header:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(255,255,255,0.3);
-    }
-
-    /* ========== HERO ========== */
-    .hero {
-      background: var(--bg);
-      padding-top: 64px;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-    }
-
-    .hero .container {
-      display: flex;
-      align-items: center;
-      gap: 60px;
-      padding-top: 40px;
-      padding-bottom: 40px;
-    }
-
-    .hero-text {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .hero-catch {
-      font-size: 36px;
-      font-weight: 900;
-      line-height: 1.4;
-      letter-spacing: -0.5px;
-      color: var(--text);
-      margin-bottom: 20px;
-    }
-
-    .hero-catch .highlight {
-      color: var(--green);
-    }
-
-    .hero-sub {
-      font-size: 16px;
-      line-height: 1.8;
-      color: var(--text-light);
-      margin-bottom: 36px;
-      font-weight: 400;
-    }
-
-    .btn-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--green);
-      color: var(--white);
-      border: none;
-      padding: 16px 40px;
-      border-radius: 50px;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      font-family: 'Noto Sans JP', sans-serif;
-      box-shadow: 0 4px 20px rgba(17, 200, 32, 0.3);
-    }
-
-    .btn-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 28px rgba(17, 200, 32, 0.4);
-      background: var(--green-dark);
-    }
-
-    .btn-cta svg {
-      transition: transform 0.2s ease;
-    }
-
-    .btn-cta:hover svg {
-      transform: translateX(3px);
-    }
-
-    .hero-visual {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    .phone-mockup {
-      width: 280px;
-      height: 560px;
-      background: var(--white);
-      border-radius: 40px;
-      border: 8px solid #1a1a1a;
-      overflow: hidden;
-      position: relative;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
-    }
-
-    .phone-notch {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 120px;
-      height: 28px;
-      background: #1a1a1a;
-      border-radius: 0 0 18px 18px;
-      z-index: 2;
-    }
-
-    .phone-screen {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(180deg, #f0fdf0 0%, var(--white) 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 20px;
-      gap: 12px;
-    }
-
-    .phone-screen-icon {
-      width: 64px;
-      height: 64px;
-      background: var(--green);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 32px;
-      margin-bottom: 8px;
-    }
-
-    .phone-screen-text {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 700;
-      font-size: 18px;
-      color: var(--text);
-    }
-
-    .phone-screen-sub {
-      font-size: 12px;
-      color: var(--text-light);
-      text-align: center;
-    }
-
-    .phone-screen-items {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: center;
-      margin-top: 8px;
-    }
-
-    .phone-screen-item {
-      background: var(--bg);
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 11px;
-      color: var(--text);
-    }
-
-    .dog-character {
-      position: absolute;
-      bottom: -10px;
-      right: -40px;
-      width: 100px;
-      height: 100px;
-      background: #FFE4B5;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 48px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-      border: 4px solid var(--white);
+    .hero-left { flex: 1.1; position: relative; }
+    .hero-right { flex: 0.9; display: flex; justify-content: center; }
+    .hero-char-sleep { width: 110px; margin-bottom: 8px; display: block; }
+    .hero-heading-wrap { position: relative; display: inline-block; }
+    .hero-char-camera {
+      position: absolute; width: 130px; right: -80px; top: -20px;
       animation: float 3s ease-in-out infinite;
     }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+    @keyframes float { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-10px); } }
+    .hero-catchcopy {
+      font-size: 42px; font-weight: 800; line-height: 1.45; color: var(--text); letter-spacing: -0.01em;
     }
-
-    /* ========== FEATURES ========== */
-    .features {
-      padding: 100px 0;
-      background: var(--white);
+    .hero-catchcopy .inupla { font-family: 'Poppins', sans-serif; font-weight: 800; letter-spacing: 0.02em; }
+    .hero-sub { margin-top: 24px; font-size: 14px; color: var(--text-light); line-height: 2.1; }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 8px; margin-top: 36px; padding: 15px 40px;
+      background: var(--green); color: var(--white); font-weight: 700; font-size: 15px;
+      border-radius: 50px; text-decoration: none; transition: all 0.3s;
+      box-shadow: 0 4px 20px rgba(17,200,32,0.25);
     }
+    .hero-cta:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(17,200,32,0.35); }
+    .hero-cta .arrow { transition: transform 0.3s; }
+    .hero-cta:hover .arrow { transform: translateX(4px); }
 
-    .features-title {
-      text-align: center;
-      font-size: 28px;
-      font-weight: 800;
-      margin-bottom: 12px;
-      color: var(--text);
+    /* PHONE */
+    .phone {
+      width: 280px; height: 572px; background: var(--white); border-radius: 48px;
+      border: 8px solid #1a1a1a; position: relative; overflow: hidden; flex-shrink: 0;
+      box-shadow: 24px 24px 64px rgba(0,0,0,0.07);
     }
-
-    .features-subtitle {
-      text-align: center;
-      font-size: 15px;
-      color: var(--text-light);
-      margin-bottom: 72px;
+    .phone-notch {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 110px; height: 26px; background: #1a1a1a; border-radius: 0 0 18px 18px; z-index: 3;
     }
-
-    .feature-item {
-      display: flex;
-      align-items: center;
-      gap: 80px;
-      margin-bottom: 100px;
+    .phone-screen {
+      width: 100%; height: 100%; background: var(--bg);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 4px; padding: 36px 16px 16px;
     }
-
-    .feature-item:last-child {
-      margin-bottom: 0;
+    .phone-icon {
+      width: 36px; height: 36px; background: var(--green); border-radius: 9px;
+      display: flex; align-items: center; justify-content: center; margin-bottom: 4px;
+      color: var(--white); font-family: 'Poppins',sans-serif; font-weight: 800; font-size: 11px;
     }
+    .phone-name { font-family: 'Poppins',sans-serif; font-weight: 700; font-size: 13px; color: var(--green); }
+    .phone-label { font-size: 10px; color: var(--accent); }
+    .phone-sm { width: 240px; height: 490px; border-radius: 42px; border-width: 7px; }
+    .phone-sm .phone-notch { width: 96px; height: 22px; border-radius: 0 0 14px 14px; }
 
-    .feature-item.reverse {
-      flex-direction: row-reverse;
+    /* FEATURES */
+    .feature { padding: 100px 60px; }
+    .feature:nth-child(even) { background: var(--bg); }
+    .feature:nth-child(odd) { background: var(--white); }
+    .feature-inner {
+      max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 80px;
     }
-
-    .feature-text {
-      flex: 1;
-    }
-
+    .feature-inner.reverse { flex-direction: row-reverse; }
+    .feature-text { flex: 1; }
+    .feature-visual { flex: 1; display: flex; justify-content: center; position: relative; }
     .feature-label {
-      display: inline-block;
-      background: var(--green-light);
-      color: var(--green);
-      font-size: 12px;
-      font-weight: 700;
-      padding: 6px 14px;
-      border-radius: 20px;
-      margin-bottom: 16px;
-      letter-spacing: 0.5px;
+      display: inline-block; padding: 4px 14px; background: var(--green-light); color: var(--green);
+      font-size: 12px; font-weight: 700; border-radius: 50px; margin-bottom: 16px;
     }
+    .feature-heading { font-size: 30px; font-weight: 800; line-height: 1.5; color: var(--text); }
+    .feature-desc { margin-top: 16px; font-size: 13.5px; color: var(--text-light); line-height: 2; }
+    .feature-char { position: absolute; z-index: 2; }
+    .fc-rb { right: -30px; bottom: -20px; width: 140px; }
+    .fc-rt { right: -20px; top: -30px; width: 120px; }
 
-    .feature-heading {
-      font-size: 26px;
-      font-weight: 800;
-      line-height: 1.4;
-      margin-bottom: 16px;
-      color: var(--text);
+    /* FAQ */
+    .faq { padding: 100px 60px; background: var(--white); }
+    .faq-inner { max-width: 700px; margin: 0 auto; }
+    .faq-title { font-size: 24px; font-weight: 800; text-align: center; margin-bottom: 48px; }
+    .faq-item { border-bottom: 1px solid var(--line); }
+    .faq-item:first-child { border-top: 1px solid var(--line); }
+    .faq-q {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 0; cursor: pointer; font-size: 14px; font-weight: 500;
+      color: var(--text); background: none; border: none; width: 100%;
+      text-align: left; font-family: inherit; line-height: 1.6; transition: color 0.2s;
     }
+    .faq-q:hover { color: var(--green); }
+    .faq-icon { flex-shrink: 0; margin-left: 16px; font-size: 18px; color: var(--text-light); transition: transform 0.3s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .faq-item.open .faq-a { max-height: 200px; }
+    .faq-a-inner { padding: 0 0 20px; font-size: 13px; color: var(--text-light); line-height: 1.9; }
 
-    .feature-desc {
-      font-size: 15px;
-      line-height: 1.8;
-      color: var(--text-light);
+    /* BOTTOM CTA */
+    .cta-bottom { padding: 80px 60px; background: var(--white); text-align: center; }
+    .cta-bottom-inner { max-width: 480px; margin: 0 auto; }
+    .cta-bottom-char { width: 80px; margin: 0 auto 20px; display: block; }
+    .cta-bottom-heading { font-size: 26px; font-weight: 800; line-height: 1.6; margin-bottom: 32px; }
+    .cta-form { display: flex; flex-direction: column; gap: 14px; max-width: 380px; margin: 0 auto; }
+    .cta-email {
+      width: 100%; padding: 14px 20px; border: 1.5px solid var(--line);
+      border-radius: 10px; font-size: 14px; font-family: inherit;
+      outline: none; background: var(--bg); transition: border-color 0.3s;
     }
-
-    .feature-visual {
-      flex: 1;
-      display: flex;
-      justify-content: center;
+    .cta-email:focus { border-color: var(--green); }
+    .cta-email::placeholder { color: var(--accent); }
+    .cta-submit {
+      width: 100%; padding: 14px; background: var(--green); color: var(--white);
+      font-weight: 700; font-size: 15px; border: none; border-radius: 50px;
+      cursor: pointer; font-family: inherit; transition: all 0.3s;
+      box-shadow: 0 4px 16px rgba(17,200,32,0.25);
     }
+    .cta-submit:hover { background: var(--green-dark); transform: translateY(-2px); }
 
-    .feature-phone {
-      width: 240px;
-      height: 480px;
-      background: var(--white);
-      border-radius: 32px;
-      border: 6px solid #1a1a1a;
-      overflow: hidden;
-      position: relative;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.10);
+    /* FOOTER */
+    .footer { padding: 32px 48px; border-top: 1px solid var(--line); background: var(--white); }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
     }
-
-    .feature-phone .phone-notch {
-      width: 100px;
-      height: 24px;
-    }
-
-    .feature-phone-screen {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 32px 16px;
-      gap: 8px;
-    }
-
-    .feature-phone-screen .screen-icon {
-      font-size: 48px;
-      margin-bottom: 8px;
-    }
-
-    .feature-phone-screen .screen-label {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .feature-phone-screen .screen-desc {
-      font-size: 11px;
-      color: var(--text-light);
-      text-align: center;
-    }
-
-    .screen-diary { background: linear-gradient(180deg, #FFF8E1 0%, var(--white) 100%); }
-    .screen-community { background: linear-gradient(180deg, #E8F5E9 0%, var(--white) 100%); }
-    .screen-game { background: linear-gradient(180deg, #E3F2FD 0%, var(--white) 100%); }
-    .screen-ai { background: linear-gradient(180deg, #F3E5F5 0%, var(--white) 100%); }
-    .screen-map { background: linear-gradient(180deg, #E0F7FA 0%, var(--white) 100%); }
-    .screen-shop { background: linear-gradient(180deg, #FFF3E0 0%, var(--white) 100%); }
-
-    /* placeholder UI elements inside phone screens */
-    .screen-placeholder-cards {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      width: 100%;
-      padding: 0 8px;
-      margin-top: 12px;
-    }
-
-    .screen-placeholder-card {
-      background: var(--bg);
-      border-radius: 8px;
-      height: 32px;
-      width: 100%;
-    }
-
-    .screen-placeholder-card.short { width: 70%; }
-
-    /* ========== POINT SECTION ========== */
-    .point-section {
-      padding: 100px 0;
-      background: var(--bg);
-    }
-
-    .point-title {
-      text-align: center;
-      font-size: 28px;
-      font-weight: 800;
-      margin-bottom: 12px;
-      color: var(--text);
-    }
-
-    .point-subtitle {
-      text-align: center;
-      font-size: 15px;
-      color: var(--text-light);
-      margin-bottom: 60px;
-      line-height: 1.8;
-    }
-
-    .point-flow {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-
-    .point-step {
-      flex: 1;
-      min-width: 200px;
-      max-width: 280px;
-      text-align: center;
-      padding: 32px 24px;
-      background: var(--white);
-      border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-      transition: transform 0.2s ease;
-    }
-
-    .point-step:hover {
-      transform: translateY(-4px);
-    }
-
-    .point-step-icon {
-      width: 64px;
-      height: 64px;
-      background: var(--green-light);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      margin: 0 auto 16px;
-    }
-
-    .point-step-title {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: var(--text);
-    }
-
-    .point-step-desc {
-      font-size: 13px;
-      color: var(--text-light);
-      line-height: 1.6;
-    }
-
-    .point-arrow {
-      font-size: 24px;
-      color: var(--green);
-      font-weight: 700;
-    }
-
-    /* ========== FAQ ========== */
-    .faq {
-      padding: 100px 0;
-      background: var(--white);
-    }
-
-    .faq-title {
-      text-align: center;
-      font-size: 28px;
-      font-weight: 800;
-      margin-bottom: 48px;
-      color: var(--text);
-    }
-
-    .faq-list {
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
-    .faq-item {
-      border-bottom: 1px solid var(--line);
-    }
-
-    .faq-item:first-child {
-      border-top: 1px solid var(--line);
-    }
-
-    .faq-question {
-      width: 100%;
-      background: none;
-      border: none;
-      padding: 24px 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      cursor: pointer;
-      font-family: 'Noto Sans JP', sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--text);
-      text-align: left;
-    }
-
-    .faq-question:hover {
-      color: var(--green);
-    }
-
-    .faq-icon {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: var(--bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: all 0.3s ease;
-      font-size: 18px;
-      color: var(--text-light);
-    }
-
-    .faq-item.active .faq-icon {
-      background: var(--green);
-      color: var(--white);
-      transform: rotate(45deg);
-    }
-
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.3s ease;
-    }
-
-    .faq-item.active .faq-answer {
-      max-height: 200px;
-    }
-
-    .faq-answer-inner {
-      padding: 0 0 24px;
-      font-size: 14px;
-      line-height: 1.8;
-      color: var(--text-light);
-    }
-
-    /* ========== CTA SECTION ========== */
-    .cta-section {
-      padding: 100px 0;
-      background: var(--green);
-      text-align: center;
-    }
-
-    .cta-heading {
-      font-size: 32px;
-      font-weight: 800;
-      color: var(--white);
-      margin-bottom: 40px;
-      line-height: 1.4;
-    }
-
-    .cta-form {
-      max-width: 440px;
-      margin: 0 auto;
-    }
-
-    .cta-input {
-      width: 100%;
-      padding: 16px 24px;
-      border: 2px solid rgba(255,255,255,0.3);
-      border-radius: 12px;
-      font-size: 15px;
-      font-family: 'Noto Sans JP', sans-serif;
-      background: rgba(255,255,255,0.15);
-      color: var(--white);
-      outline: none;
-      transition: border-color 0.2s ease;
-      margin-bottom: 16px;
-    }
-
-    .cta-input::placeholder {
-      color: rgba(255,255,255,0.6);
-    }
-
-    .cta-input:focus {
-      border-color: var(--white);
-      background: rgba(255,255,255,0.2);
-    }
-
-    .btn-cta-submit {
-      width: 100%;
-      background: var(--white);
-      color: var(--green);
-      border: none;
-      padding: 16px 40px;
-      border-radius: 12px;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      font-family: 'Noto Sans JP', sans-serif;
-    }
-
-    .btn-cta-submit:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 24px rgba(0,0,0,0.15);
-    }
-
-    /* ========== FOOTER ========== */
-    .footer {
-      background: var(--white);
-      padding: 60px 0 32px;
-      border-top: 1px solid var(--line);
-    }
-
-    .footer-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 40px;
-      gap: 40px;
-    }
-
-    .footer-logo {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 800;
-      font-size: 22px;
-      color: var(--green);
-      text-decoration: none;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 32px;
-      flex-wrap: wrap;
-    }
-
-    .footer-link {
-      font-size: 13px;
-      color: var(--text-light);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .footer-link:hover {
-      color: var(--green);
-    }
-
-    .footer-social {
-      display: flex;
-      gap: 16px;
-    }
-
+    .footer-left { display: flex; flex-direction: column; gap: 12px; }
+    .footer-logo img { height: 18px; }
+    .footer-links { display: flex; gap: 20px; list-style: none; }
+    .footer-links a { font-size: 11px; color: var(--text-light); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--green); }
+    .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+    .footer-social { display: flex; gap: 12px; }
     .footer-social a {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      color: var(--text);
-      font-size: 16px;
-      transition: all 0.2s ease;
+      width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+      border-radius: 6px; background: var(--bg); color: var(--text); text-decoration: none;
+      transition: background 0.2s, color 0.2s;
     }
+    .footer-social a:hover { background: var(--green); color: var(--white); }
+    .footer-copy { font-size: 10px; color: var(--accent); }
 
-    .footer-social a:hover {
-      background: var(--green);
-      color: var(--white);
-    }
+    /* ANIMATIONS */
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 24px;
-      border-top: 1px solid var(--line);
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .footer-company {
-      font-size: 12px;
-      color: var(--text-light);
-    }
-
-    .footer-copyright {
-      font-size: 12px;
-      color: var(--accent);
-    }
-
-    /* ========== ANIMATIONS ========== */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ========== MOBILE RESPONSIVE ========== */
+    /* RESPONSIVE */
     @media (max-width: 768px) {
-      .header {
-        padding: 0 16px;
-        height: 56px;
-      }
-
-      .header-logo {
-        font-size: 20px;
-      }
-
-      .btn-header {
-        padding: 8px 18px;
-        font-size: 12px;
-      }
-
-      .hero {
-        padding-top: 56px;
-      }
-
-      .hero .container {
-        flex-direction: column;
-        gap: 40px;
-        text-align: center;
-        padding-top: 48px;
-        padding-bottom: 48px;
-      }
-
-      .hero-catch {
-        font-size: 26px;
-      }
-
-      .hero-sub {
-        font-size: 14px;
-        margin-bottom: 28px;
-      }
-
-      .hero-visual {
-        width: 100%;
-      }
-
-      .phone-mockup {
-        width: 220px;
-        height: 440px;
-        border-width: 6px;
-        border-radius: 32px;
-      }
-
-      .dog-character {
-        width: 72px;
-        height: 72px;
-        font-size: 36px;
-        right: -20px;
-        bottom: -5px;
-      }
-
-      /* Features mobile */
-      .features {
-        padding: 72px 0;
-      }
-
-      .features-title {
-        font-size: 22px;
-      }
-
-      .features-subtitle {
-        margin-bottom: 48px;
-      }
-
-      .feature-item,
-      .feature-item.reverse {
-        flex-direction: column;
-        gap: 40px;
-        margin-bottom: 72px;
-        text-align: center;
-      }
-
-      .feature-heading {
-        font-size: 22px;
-      }
-
-      .feature-phone {
-        width: 200px;
-        height: 400px;
-      }
-
-      /* Point section mobile */
-      .point-section {
-        padding: 72px 0;
-      }
-
-      .point-title {
-        font-size: 22px;
-      }
-
-      .point-flow {
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
-      }
-
-      .point-step {
-        min-width: unset;
-        max-width: 100%;
-        width: 100%;
-      }
-
-      .point-arrow {
-        transform: rotate(90deg);
-      }
-
-      /* FAQ mobile */
-      .faq {
-        padding: 72px 0;
-      }
-
-      .faq-title {
-        font-size: 22px;
-      }
-
-      .faq-question {
-        font-size: 14px;
-        padding: 20px 0;
-      }
-
-      /* CTA mobile */
-      .cta-section {
-        padding: 72px 0;
-      }
-
-      .cta-heading {
-        font-size: 24px;
-      }
-
-      /* Footer mobile */
-      .footer-top {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-
-      .footer-links {
-        justify-content: center;
-        gap: 20px;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
+      .header { height: 52px; padding: 0 20px; }
+      .header-logo img { height: 18px; }
+      .header-cta { padding: 7px 18px; font-size: 12px; }
+      .hero { padding-top: 52px; }
+      .hero-inner { flex-direction: column; padding: 40px 24px 60px; gap: 40px; text-align: center; }
+      .hero-left { display: flex; flex-direction: column; align-items: center; }
+      .hero-char-sleep { width: 80px; }
+      .hero-char-camera { width: 90px; right: -50px; top: -10px; }
+      .hero-catchcopy { font-size: 28px; }
+      .hero-sub { font-size: 13px; margin-top: 20px; }
+      .hero-cta { margin-top: 28px; padding: 13px 32px; font-size: 14px; }
+      .phone { width: 220px; height: 449px; border-radius: 38px; border-width: 6px; }
+      .phone-notch { width: 90px; height: 20px; border-radius: 0 0 12px 12px; }
+      .phone-sm { width: 200px; height: 408px; border-radius: 34px; border-width: 6px; }
+      .phone-sm .phone-notch { width: 80px; height: 18px; border-radius: 0 0 10px 10px; }
+      .feature { padding: 60px 24px; }
+      .feature-inner, .feature-inner.reverse { flex-direction: column; gap: 36px; text-align: center; }
+      .feature-heading { font-size: 24px; }
+      .feature-desc { font-size: 13px; }
+      .feature-char { display: none; }
+      .faq { padding: 60px 24px; }
+      .faq-title { font-size: 20px; margin-bottom: 32px; }
+      .faq-q { font-size: 13px; padding: 18px 0; }
+      .cta-bottom { padding: 60px 24px; }
+      .cta-bottom-heading { font-size: 22px; }
+      .cta-form { max-width: 100%; }
+      .footer { padding: 28px 20px; }
+      .footer-inner { flex-direction: column; gap: 20px; align-items: center; text-align: center; }
+      .footer-left { align-items: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; gap: 12px; }
+      .footer-right { align-items: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ========== HEADER ========== -->
-  <header class="header">
-    <a href="#" class="header-logo">INUPLA</a>
-    <button class="btn-header" onclick="scrollToCTA()">事前登録する</button>
-  </header>
+<header class="header">
+  <div class="header-logo"><a href="#"><img src="images/INUPLA_logo_header.svg" alt="INUPLA"></a></div>
+  <a href="#cta" class="header-cta">事前登録する</a>
+</header>
 
-  <!-- ========== HERO ========== -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-text">
-        <h1 class="hero-catch">
-          <span class="highlight">犬好き</span>の、<br>
-          <span class="highlight">犬好き</span>による、<br>
-          <span class="highlight">犬好き</span>のためのアプリ
-        </h1>
-        <p class="hero-sub">
-          日記、ゲーム、AIチャット、コミュニティ、マップ。<br>
-          毎日開きたくなる、犬の飼い主のためのスーパーアプリ。
-        </p>
-        <button class="btn-cta" onclick="scrollToCTA()">
-          事前登録する
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <img src="images/inu_lp_1.svg" alt="" class="hero-char-sleep">
+      <div class="hero-heading-wrap">
+        <h1 class="hero-catchcopy">愛犬との暮らし、<br>ぜんぶ <span class="inupla">INUPLA</span> で。</h1>
+        <img src="images/inu_lp_2.svg" alt="" class="hero-char-camera">
       </div>
-      <div class="hero-visual">
-        <div class="phone-mockup">
-          <div class="phone-notch"></div>
-          <div class="phone-screen">
-            <div class="phone-screen-icon">🐕</div>
-            <div class="phone-screen-text">INUPLA</div>
-            <div class="phone-screen-sub">犬の飼い主のためのスーパーアプリ</div>
-            <div class="phone-screen-items">
-              <span class="phone-screen-item">📔 日記</span>
-              <span class="phone-screen-item">🎮 ゲーム</span>
-              <span class="phone-screen-item">🤖 AI</span>
-              <span class="phone-screen-item">👥 コミュニティ</span>
-              <span class="phone-screen-item">🗺️ マップ</span>
-            </div>
-          </div>
-        </div>
-        <div class="dog-character">🐶</div>
-      </div>
+      <p class="hero-sub">
+        記録、つながり、あそび、AI相談、マップ、ショッピングまで。<br>
+        愛犬との暮らしを、もっと楽しく。<br>
+        毎日ひらくたびに、うれしい発見がある。
+      </p>
+      <a href="#cta" class="hero-cta">事前登録する <span class="arrow">→</span></a>
     </div>
-  </section>
-
-  <!-- ========== FEATURES ========== -->
-  <section class="features">
-    <div class="container">
-      <h2 class="features-title fade-in">できること</h2>
-      <p class="features-subtitle fade-in">INUPLAひとつで、愛犬との毎日がもっと楽しく。</p>
-
-      <!-- Feature 1: 日記 -->
-      <div class="feature-item fade-in">
-        <div class="feature-text">
-          <span class="feature-label">📔 DIARY</span>
-          <h3 class="feature-heading">今日のできごとを、<br>愛犬と一緒に</h3>
-          <p class="feature-desc">写真と一緒に愛犬との日々を記録。成長の思い出がどんどん積み重なります。</p>
-        </div>
-        <div class="feature-visual">
-          <div class="feature-phone">
-            <div class="phone-notch"></div>
-            <div class="feature-phone-screen screen-diary">
-              <span class="screen-icon">📔</span>
-              <span class="screen-label">今日の日記</span>
-              <span class="screen-desc">写真を追加して記録しよう</span>
-              <div class="screen-placeholder-cards">
-                <div class="screen-placeholder-card"></div>
-                <div class="screen-placeholder-card short"></div>
-                <div class="screen-placeholder-card"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 2: コミュニティ -->
-      <div class="feature-item reverse fade-in">
-        <div class="feature-text">
-          <span class="feature-label">👥 COMMUNITY</span>
-          <h3 class="feature-heading">犬好き同士、<br>もっとつながる</h3>
-          <p class="feature-desc">愛犬の写真を投稿したり、他の飼い主さんと情報交換。犬仲間が見つかります。</p>
-        </div>
-        <div class="feature-visual">
-          <div class="feature-phone">
-            <div class="phone-notch"></div>
-            <div class="feature-phone-screen screen-community">
-              <span class="screen-icon">👥</span>
-              <span class="screen-label">コミュニティ</span>
-              <span class="screen-desc">みんなの投稿をチェック</span>
-              <div class="screen-placeholder-cards">
-                <div class="screen-placeholder-card"></div>
-                <div class="screen-placeholder-card"></div>
-                <div class="screen-placeholder-card short"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 3: ゲーム -->
-      <div class="feature-item fade-in">
-        <div class="feature-text">
-          <span class="feature-label">🎮 GAME</span>
-          <h3 class="feature-heading">スキマ時間に、<br>犬ゲームで遊ぼう</h3>
-          <p class="feature-desc">Flappy DogやMergeパズルなど、犬テーマのミニゲームが盛りだくさん。</p>
-        </div>
-        <div class="feature-visual">
-          <div class="feature-phone">
-            <div class="phone-notch"></div>
-            <div class="feature-phone-screen screen-game">
-              <span class="screen-icon">🎮</span>
-              <span class="screen-label">ミニゲーム</span>
-              <span class="screen-desc">遊んでポイントを貯めよう</span>
-              <div class="screen-placeholder-cards">
-                <div class="screen-placeholder-card"></div>
-                <div class="screen-placeholder-card short"></div>
-                <div class="screen-placeholder-card"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 4: AIチャット -->
-      <div class="feature-item reverse fade-in">
-        <div class="feature-text">
-          <span class="feature-label">🤖 AI CHAT</span>
-          <h3 class="feature-heading">犬のことなら、<br>AIに何でも聞ける</h3>
-          <p class="feature-desc">しつけ、健康、ごはんのこと。愛犬の悩みをAIがいつでもサポートします。</p>
-        </div>
-        <div class="feature-visual">
-          <div class="feature-phone">
-            <div class="phone-notch"></div>
-            <div class="feature-phone-screen screen-ai">
-              <span class="screen-icon">🤖</span>
-              <span class="screen-label">AIチャット</span>
-              <span class="screen-desc">何でも聞いてみよう</span>
-              <div class="screen-placeholder-cards">
-                <div class="screen-placeholder-card short"></div>
-                <div class="screen-placeholder-card"></div>
-                <div class="screen-placeholder-card short"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 5: マップ -->
-      <div class="feature-item fade-in">
-        <div class="feature-text">
-          <span class="feature-label">🗺️ MAP</span>
-          <h3 class="feature-heading">犬と行ける場所、<br>すぐ見つかる</h3>
-          <p class="feature-desc">ドッグラン、犬OKカフェ、ペットショップ。近くの犬フレンドリーな施設を検索。</p>
-        </div>
-        <div class="feature-visual">
-          <div class="feature-phone">
-            <div class="phone-notch"></div>
-            <div class="feature-phone-screen screen-map">
-              <span class="screen-icon">🗺️</span>
-              <span class="screen-label">マップ検索</span>
-              <span class="screen-desc">近くの犬フレンドリー施設</span>
-              <div class="screen-placeholder-cards">
-                <div class="screen-placeholder-card"></div>
-                <div class="screen-placeholder-card"></div>
-                <div class="screen-placeholder-card short"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 6: ショッピング -->
-      <div class="feature-item reverse fade-in">
-        <div class="feature-text">
-          <span class="feature-label">🛍️ SHOP</span>
-          <h3 class="feature-heading">貯めたポイントで、<br>愛犬にごほうびを</h3>
-          <p class="feature-desc">ドッグフード、おやつ、犬用品。ポイントで愛犬へのプレゼントと交換できます。</p>
-        </div>
-        <div class="feature-visual">
-          <div class="feature-phone">
-            <div class="phone-notch"></div>
-            <div class="feature-phone-screen screen-shop">
-              <span class="screen-icon">🛍️</span>
-              <span class="screen-label">ショップ</span>
-              <span class="screen-desc">ポイントで交換しよう</span>
-              <div class="screen-placeholder-cards">
-                <div class="screen-placeholder-card"></div>
-                <div class="screen-placeholder-card short"></div>
-                <div class="screen-placeholder-card"></div>
-              </div>
-            </div>
-          </div>
+    <div class="hero-right fade-up">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="phone-icon">I</div>
+          <div class="phone-name">INUPLA</div>
+          <div class="phone-label">ホーム画面</div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ========== POINT SECTION ========== -->
-  <section class="point-section">
-    <div class="container">
-      <h2 class="point-title fade-in">使うほど貯まる。貯めたポイントで愛犬にごほうび。</h2>
-      <p class="point-subtitle fade-in">日記、コミュニティ、ゲーム。<br>INUPLAを楽しむだけで、ポイントが自然に貯まります。</p>
-
-      <div class="point-flow fade-in">
-        <div class="point-step">
-          <div class="point-step-icon">📔</div>
-          <div class="point-step-title">使って貯める</div>
-          <div class="point-step-desc">日記を書く、投稿する、ゲームで遊ぶ。毎日の活動でポイント獲得。</div>
-        </div>
-
-        <div class="point-arrow">→</div>
-
-        <div class="point-step">
-          <div class="point-step-icon">⭐</div>
-          <div class="point-step-title">ポイントが貯まる</div>
-          <div class="point-step-desc">デイリーミッションやストリークボーナスでさらにポイントアップ。</div>
-        </div>
-
-        <div class="point-arrow">→</div>
-
-        <div class="point-step">
-          <div class="point-step-icon">🎁</div>
-          <div class="point-step-title">愛犬にごほうび</div>
-          <div class="point-step-desc">ドッグフード、おやつ、犬用品とポイントを交換できます。</div>
-        </div>
+<section class="feature">
+  <div class="feature-inner fade-up">
+    <div class="feature-text">
+      <span class="feature-label">きろく</span>
+      <h2 class="feature-heading">忘れたくない笑顔を、<br>ずっと残そう</h2>
+      <p class="feature-desc">写真を撮って、ひとこと添えるだけ。<br>30秒で今日の思い出が残せます。</p>
+    </div>
+    <div class="feature-visual">
+      <div class="phone phone-sm">
+        <div class="phone-notch"></div>
+        <div class="phone-screen"><div class="phone-icon">I</div><div class="phone-name">INUPLA</div><div class="phone-label">きろく</div></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ========== FAQ ========== -->
-  <section class="faq">
-    <div class="container">
-      <h2 class="faq-title fade-in">よくある質問</h2>
-      <div class="faq-list fade-in">
-
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            <span>利用料金はかかりますか？</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">基本機能は無料です。一部のプレミアム機能は月額課金で解放できます。</div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            <span>どんな犬種でも使えますか？</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">はい、犬種に関係なくすべての犬の飼い主さんにお使いいただけます。</div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            <span>ポイントはどうやって貯まりますか？</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">日記の投稿、コミュニティでの交流、ゲームのプレイなど、アプリを使うだけで自然に貯まります。</div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            <span>ポイントは何に使えますか？</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">ドッグフード、おやつ、犬用品などと交換できます。</div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            <span>複数の犬を登録できますか？</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">はい、何頭でも登録可能です。</div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            <span>事前登録すると何か特典がありますか？</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">リリース時に限定特典をプレゼント予定です。</div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            <span>対応端末は？</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">iPhone / Android 両対応予定です。</div>
-          </div>
-        </div>
-
-      </div>
+<section class="feature">
+  <div class="feature-inner reverse fade-up">
+    <div class="feature-text">
+      <span class="feature-label">コミュニティ</span>
+      <h2 class="feature-heading">ストレスのない、<br>やさしいSNS</h2>
+      <p class="feature-desc">フォロワー数も気にしない。気軽にシェアして、<br>わからないことは同じ犬種の飼い主にすぐ聞ける心地いい場所。</p>
     </div>
-  </section>
-
-  <!-- ========== CTA SECTION ========== -->
-  <section class="cta-section" id="cta">
-    <div class="container">
-      <h2 class="cta-heading fade-in">愛犬との毎日が変わる。<br>今すぐ事前登録。</h2>
-      <div class="cta-form fade-in">
-        <input type="email" class="cta-input" placeholder="メールアドレスを入力">
-        <button class="btn-cta-submit">事前登録する</button>
+    <div class="feature-visual">
+      <div class="phone phone-sm">
+        <div class="phone-notch"></div>
+        <div class="phone-screen"><div class="phone-icon">I</div><div class="phone-name">INUPLA</div><div class="phone-label">コミュニティ</div></div>
       </div>
+      <img src="images/inu_lp_3.svg" alt="" class="feature-char fc-rb">
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ========== FOOTER ========== -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-top">
-        <a href="#" class="footer-logo">INUPLA</a>
-        <div class="footer-links">
-          <a href="#" class="footer-link">プライバシーポリシー</a>
-          <a href="#" class="footer-link">利用規約</a>
-          <a href="#" class="footer-link">お問い合わせ</a>
-          <a href="#" class="footer-link">会社情報</a>
-        </div>
-        <div class="footer-social">
-          <a href="#" aria-label="X (Twitter)">𝕏</a>
-          <a href="#" aria-label="Instagram">📷</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span class="footer-company">ラフレクト株式会社</span>
-        <span class="footer-copyright">© 2025 Raflect Inc.</span>
-      </div>
+<section class="feature">
+  <div class="feature-inner fade-up">
+    <div class="feature-text">
+      <span class="feature-label">ミニゲーム</span>
+      <h2 class="feature-heading">ゲームで遊ぶだけで、<br>ポイントが貯まる</h2>
+      <p class="feature-desc">Flappy DogにMergeパズル。ワクワクするミニゲームを楽しみながら、<br>ポイントもどんどん貯まる。</p>
     </div>
-  </footer>
+    <div class="feature-visual">
+      <div class="phone phone-sm">
+        <div class="phone-notch"></div>
+        <div class="phone-screen"><div class="phone-icon">I</div><div class="phone-name">INUPLA</div><div class="phone-label">ゲーム</div></div>
+      </div>
+      <img src="images/inu_lp_4.svg" alt="" class="feature-char fc-rt">
+    </div>
+  </div>
+</section>
 
-  <script>
-    // Smooth scroll to CTA
-    function scrollToCTA() {
-      document.getElementById('cta').scrollIntoView({ behavior: 'smooth' });
-    }
+<section class="feature">
+  <div class="feature-inner reverse fade-up">
+    <div class="feature-text">
+      <span class="feature-label">AIチャット</span>
+      <h2 class="feature-heading">いぬのこと、<br>なんでもすぐわかる</h2>
+      <p class="feature-desc">うちの子に合うフードは？旅行先で犬OKのホテルは？しつけのコツは？<br>犬に詳しいAIが、いつでもすぐに答えてくれます。</p>
+    </div>
+    <div class="feature-visual">
+      <div class="phone phone-sm">
+        <div class="phone-notch"></div>
+        <div class="phone-screen"><div class="phone-icon">I</div><div class="phone-name">INUPLA</div><div class="phone-label">AIチャット</div></div>
+      </div>
+      <img src="images/inu_lp_5.svg" alt="" class="feature-char fc-rb">
+    </div>
+  </div>
+</section>
 
-    // FAQ accordion
-    function toggleFAQ(button) {
-      const item = button.parentElement;
-      const isActive = item.classList.contains('active');
-      
-      // Close all
-      document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
-      
-      // Toggle clicked
-      if (!isActive) {
-        item.classList.add('active');
-      }
-    }
+<section class="feature">
+  <div class="feature-inner fade-up">
+    <div class="feature-text">
+      <span class="feature-label">マップ</span>
+      <h2 class="feature-heading">愛犬に必要な場所が、<br>ぜんぶ見つかる</h2>
+      <p class="feature-desc">動物病院、救急病院、犬OKのカフェ、ドッグラン、ペットショップ。<br>現在地からワンタップでマップ上で検索。</p>
+    </div>
+    <div class="feature-visual">
+      <div class="phone phone-sm">
+        <div class="phone-notch"></div>
+        <div class="phone-screen"><div class="phone-icon">I</div><div class="phone-name">INUPLA</div><div class="phone-label">マップ</div></div>
+      </div>
+      <img src="images/inu_lp_6.svg" alt="" class="feature-char fc-rt">
+    </div>
+  </div>
+</section>
 
-    // Scroll animation
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
+<section class="feature">
+  <div class="feature-inner reverse fade-up">
+    <div class="feature-text">
+      <span class="feature-label">ショッピング</span>
+      <h2 class="feature-heading">もう迷わない、<br>うちの子専用ショップ</h2>
+      <p class="feature-desc">小型犬には小型犬のフード、パピーにはパピー用のグッズ。<br>愛犬のプロフィールに合った商品だけが並ぶ、あなた専用のショップ。</p>
+    </div>
+    <div class="feature-visual">
+      <div class="phone phone-sm">
+        <div class="phone-notch"></div>
+        <div class="phone-screen"><div class="phone-icon">I</div><div class="phone-name">INUPLA</div><div class="phone-label">ショップ</div></div>
+      </div>
+      <img src="images/inu_lp_7.svg" alt="" class="feature-char fc-rb">
+    </div>
+  </div>
+</section>
 
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-  </script>
+<section class="faq">
+  <div class="faq-inner fade-up">
+    <h2 class="faq-title">よくある質問</h2>
+    <div class="faq-item"><button class="faq-q"><span>利用料金はかかりますか？</span><span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">基本機能はすべて無料でご利用いただけます。一部プレミアム機能は月額課金制を予定しています。</div></div></div>
+    <div class="faq-item"><button class="faq-q"><span>ポイントはどうやって貯まりますか？</span><span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">日記の投稿、コミュニティへの参加、ミニゲームのプレイなど、アプリを使うだけで自然にポイントが貯まります。</div></div></div>
+    <div class="faq-item"><button class="faq-q"><span>ポイントは何に使えますか？</span><span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">ドッグフード、おやつ、犬用品など、ショッピング機能でお使いいただけます。</div></div></div>
+    <div class="faq-item"><button class="faq-q"><span>複数の犬を登録できますか？</span><span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">はい、何頭でも登録可能です。それぞれの犬に合わせた情報やレコメンドを提供します。</div></div></div>
+    <div class="faq-item"><button class="faq-q"><span>事前登録すると何か特典がありますか？</span><span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">リリース時に限定特典をご用意しています。詳細は事前登録いただいた方にメールでお知らせします。</div></div></div>
+  </div>
+</section>
 
+<section class="cta-bottom" id="cta">
+  <div class="cta-bottom-inner fade-up">
+    <img src="images/inu_lp_8.svg" alt="" class="cta-bottom-char">
+    <h2 class="cta-bottom-heading">愛犬との毎日が変わる<br>今すぐ事前登録</h2>
+    <form class="cta-form" onsubmit="return handleSubmit(event)">
+      <input type="email" class="cta-email" placeholder="メールアドレスを入力" required>
+      <button type="submit" class="cta-submit">事前登録する</button>
+    </form>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <div class="footer-logo"><img src="images/INUPLA_logo_footer.svg" alt="INUPLA"></div>
+      <ul class="footer-links">
+        <li><a href="#">プライバシーポリシー</a></li>
+        <li><a href="#">利用規約</a></li>
+        <li><a href="#">お問い合わせ</a></li>
+        <li><a href="#">会社概要</a></li>
+      </ul>
+    </div>
+    <div class="footer-right">
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" aria-label="X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="#" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.71a8.21 8.21 0 0 0 4.76 1.52V6.69h-1z"/></svg></a>
+      </div>
+      <p class="footer-copy">© 2025 Raflect Inc. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const email = e.target.querySelector('input[type="email"]').value;
+    alert('ご登録ありがとうございます！\n' + email + ' 宛にリリース情報をお届けします。');
+    e.target.reset();
+    return false;
+  }
+</script>
 </body>
 </html>
